@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.Backend.DAO.ProductDAO;
+import com.Backend.Model.Category;
 import com.Backend.Model.Product;
 
 @Repository("productDAO")
@@ -33,26 +34,45 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public boolean updateProduct(Product product) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			sessionFactory.getCurrentSession().update(product);
+			return true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean deleteProduct(int productid) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			sessionFactory.getCurrentSession().delete(getSingleProduct(productid));
+			return true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public Product getSingleProduct(int productid) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return sessionFactory.getCurrentSession().get(Product.class, productid);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> getAllProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+            return sessionFactory.getCurrentSession().createQuery("From Product").list();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
 	}
 
 }

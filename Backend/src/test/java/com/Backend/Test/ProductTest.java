@@ -30,7 +30,7 @@ public class ProductTest {
 	public void testAddProduct() {
 		Product product=new Product();
 		product.setName("Brown Curtain");
-		product.setCategoryid(101);
+		product.setCategoryid("101");
 		product.setSupplierid(23);
 		product.setQuantity("100");
 		product.setActive(true);

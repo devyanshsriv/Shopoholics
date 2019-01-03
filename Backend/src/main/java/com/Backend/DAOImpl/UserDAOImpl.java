@@ -78,8 +78,8 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User getUserByEmail(String username) {
 		 try {
-	            return(User) sessionFactory.getCurrentSession().createQuery("from User where email=:email")
-	            .setParameter("email",username).getSingleResult();                
+	            return(User) sessionFactory.getCurrentSession().createQuery("from User where email=:emailid")
+	            .setParameter("emailid",username).getSingleResult();                
 	        }
 	        catch(Exception ex){
 	            ex.printStackTrace();

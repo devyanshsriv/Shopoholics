@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Product {
@@ -15,12 +18,23 @@ public class Product {
 	private int productid;
 	private String name;
 
-	private int categoryid;
+	private String categoryid;
 	private int supplierid;
 	private String quantity;
 	private double unitprice;
 	private boolean active;
 	private String code;
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	@Transient
+	private MultipartFile file;
 
 	public Product() {
 		this.code = "PRO" + UUID.randomUUID().toString().substring(26).toUpperCase();
@@ -50,11 +64,11 @@ public class Product {
 		this.name = name;
 	}
 
-	public int getCategoryid() {
+	public String getCategoryid() {
 		return categoryid;
 	}
 
-	public void setCategoryid(int categoryid) {
+	public void setCategoryid(String categoryid) {
 		this.categoryid = categoryid;
 	}
 
