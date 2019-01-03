@@ -1,8 +1,10 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page session="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Elite Shoppy an Ecommerce Online Shopping Category Flat
-	Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>Ecommerce Website:Shopoholics</title>
 <!--/tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,15 +12,60 @@
 	content="Elite Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
-	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 <!--//tags -->
-<link href="resources/resources/css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="resources/css/bootstrap.css" rel="stylesheet"
+	type="text/css" media="all" />
+<link href="resources/css/style.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link href="resources/resources/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="resources/resources/css/font-awesome.css" rel="stylesheet">
-<link href="resources/resources/css/easy-responsive-tabs.css" rel='stylesheet'
+<link href="resources/css/font-awesome.css" rel="stylesheet">
+<link href="resources/css/easy-responsive-tabs.css" rel='stylesheet'
 	type='text/css' />
 <!-- //for bootstrap working -->
 <link
@@ -33,10 +80,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="header" id="home">
 		<div class="container">
 			<ul>
-				<li><a href="#" data-toggle="modal" data-target="#myModal"><i
-						class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
-				<li><a href="#" data-toggle="modal" data-target="#myModal2"><i
-						class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
+				<c:if test="${user.name==null}">
+					<li><a href="#" data-toggle="modal" data-target="#myModal"><i
+							class="fa fa-unlock-alt" aria-hidden="true"></i> Sign In </a></li>
+					<li><a href="#" data-toggle="modal" data-target="#myModal2"><i
+							class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up </a></li>
+				</c:if>
+				<c:if test="${user.name!=null}">
+
+					<li class="dropdown"><a class=" dropdown-toggle" type="button"
+						data-toggle="dropdown" href="#">Welcome <c:if
+								test="${user.role=='ROLE_ADMIN'}">ADMIN</c:if> 
+								<c:if
+								test="${user.role=='ROLE_USER'}">${user.name}</c:if> <span
+							class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+
+							<li><a href="perform_logout"><span
+									class="fas fa-sign-out-alt"></span> Logout</a></li>
+						</ul></li>
+				</c:if>
 				<li><i class="fa fa-phone" aria-hidden="true"></i> Call :
 					01234567898</li>
 				<li><i class="fa fa-envelope-o" aria-hidden="true"></i> <a
@@ -58,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- header-bot -->
 			<div class="col-md-4 logo_agile">
 				<h1>
-					<a href="index.html"><span>E</span>lite Shoppy <i
+					<a href="index"><span>S</span>hopoholics <i
 						class="fa fa-shopping-bag top_logo_agile_bag" aria-hidden="true"></i></a>
 				</h1>
 			</div>
@@ -129,107 +193,215 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav menu__list">
 								<li class="active menu__item menu__item--current"><a
-									class="menu__link" href="index.html">Home <span
-										class="sr-only">(current)</span></a></li>
+									class="menu__link" href="http://localhost:8080/Frontend1/">Home
+										<span class="sr-only">(current)</span>
+								</a></li>
+								<li class=" menu__item"><a class="menu__link" href="about">About</a></li>
+								<li class=" menu__item"><a class="menu__link" href="mens">Men's
+										Wear</a></li>
+								<li class=" menu__item"><a class="menu__link" href="womens">Women's
+										Wear</a></li>
+								<c:if test="${user.role=='ROLE_ADMIN'}">
+									<li class="menu__item dropdown"><a class="menu__link"
+										href="#" class="dropdown-toggle" data-toggle="dropdown">Manage
+											<b class="caret"></b>
+									</a>
+										<ul class="dropdown-menu agile_short_dropdown">
+											<li><a
+												href="${pageContext.request.contextPath}/manage/ProductRegister">Product</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/manage/CategoryRegister">Category</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/manage/SupplierRegister">Supplier</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/user/Register">User</a></li>
+											<li><a href="${pageContext.request.contextPath}/new">NEW</a></li>
+
+										</ul></li>
+								</c:if>
 								<li class=" menu__item"><a class="menu__link"
-									href="about.html">About</a></li>
-								<li class="dropdown menu__item"><a href="#"
-									class="dropdown-toggle menu__link" data-toggle="dropdown"
-									role="button" aria-haspopup="true" aria-expanded="false">Men's
-										wear <span class="caret"></span>
-								</a>
-									<ul class="dropdown-menu multi-column columns-3">
-										<div class="agile_inner_drop_nav_info">
-											<div class="col-sm-6 multi-gd-img1 multi-gd-text ">
-												<a href="mens.html"><img src="resources/resources/images/top2.jpg" alt=" " /></a>
-											</div>
-											<div class="col-sm-3 multi-gd-img">
-												<ul class="multi-column-dropdown">
-													<li><a href="mens.html">Clothing</a></li>
-													<li><a href="mens.html">Wallets</a></li>
-													<li><a href="mens.html">Footwear</a></li>
-													<li><a href="mens.html">Watches</a></li>
-													<li><a href="mens.html">Accessories</a></li>
-													<li><a href="mens.html">Bags</a></li>
-													<li><a href="mens.html">Caps & Hats</a></li>
-												</ul>
-											</div>
-											<div class="col-sm-3 multi-gd-img">
-												<ul class="multi-column-dropdown">
-													<li><a href="mens.html">Jewellery</a></li>
-													<li><a href="mens.html">Sunglasses</a></li>
-													<li><a href="mens.html">Perfumes</a></li>
-													<li><a href="mens.html">Beauty</a></li>
-													<li><a href="mens.html">Shirts</a></li>
-													<li><a href="mens.html">Sunglasses</a></li>
-													<li><a href="mens.html">Swimwear</a></li>
-												</ul>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-									</ul></li>
-								<li class="dropdown menu__item"><a href="#"
-									class="dropdown-toggle menu__link" data-toggle="dropdown"
-									role="button" aria-haspopup="true" aria-expanded="false">Women's
-										wear <span class="caret"></span>
-								</a>
-									<ul class="dropdown-menu multi-column columns-3">
-										<div class="agile_inner_drop_nav_info">
-											<div class="col-sm-3 multi-gd-img">
-												<ul class="multi-column-dropdown">
-													<li><a href="womens.html">Clothing</a></li>
-													<li><a href="womens.html">Wallets</a></li>
-													<li><a href="womens.html">Footwear</a></li>
-													<li><a href="womens.html">Watches</a></li>
-													<li><a href="womens.html">Accessories</a></li>
-													<li><a href="womens.html">Bags</a></li>
-													<li><a href="womens.html">Caps & Hats</a></li>
-												</ul>
-											</div>
-											<div class="col-sm-3 multi-gd-img">
-												<ul class="multi-column-dropdown">
-													<li><a href="womens.html">Jewellery</a></li>
-													<li><a href="womens.html">Sunglasses</a></li>
-													<li><a href="womens.html">Perfumes</a></li>
-													<li><a href="womens.html">Beauty</a></li>
-													<li><a href="womens.html">Shirts</a></li>
-													<li><a href="womens.html">Sunglasses</a></li>
-													<li><a href="womens.html">Swimwear</a></li>
-												</ul>
-											</div>
-											<div class="col-sm-6 multi-gd-img multi-gd-text ">
-												<a href="womens.html"><img src="resources/resources/images/top1.jpg" alt=" " /></a>
-											</div>
-											<div class="clearfix"></div>
-										</div>
-									</ul></li>
-								<li class="menu__item dropdown"><a class="menu__link"
-									href="#" class="dropdown-toggle" data-toggle="dropdown">Short
-										Codes <b class="caret"></b>
-								</a>
-									<ul class="dropdown-menu agile_short_dropdown">
-										<li><a href="icons.html">Web Icons</a></li>
-										<li><a href="typography.html">Typography</a></li>
-									</ul></li>
-								<li class=" menu__item"><a class="menu__link"
-									href="contact.html">Contact</a></li>
+									href="${pageContext.request.contextPath}/ViewProduct">All
+										Products</a></li>
 							</ul>
 						</div>
 					</div>
 				</nav>
 			</div>
 			<div class="top_nav_right">
-				<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-					<form action="#" method="post" class="last">
-						<input type="hidden" name="cmd" value="_cart"> <input
-							type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value="">
-							<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-						</button>
-					</form>
-
-				</div>
+				<a href="${pageContext.request.contextPath}/ShoppingCart"
+					class="btn btn-lg btn-default"><span
+					class="glyphicon glyphicon-shopping-cart"> ${size}</span></a>
 			</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
+	<!-- //banner-top -->
+	<!-- Modal1 -->
+<body onload='document.loginForm.username.focus();'>
+
+	<c:if test="${not empty error}">
+		<div class="error">${error}</div>
+	</c:if>
+	<c:if test="${not empty msg}">
+		<div class="msg">${msg}</div>
+	</c:if>
+	<form action="perform_login" name='loginForm' method="post">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body modal-body-sub_agile">
+						<div class="col-md-8 modal_body_left modal_body_left1">
+							<h3 class="agileinfo_sign">
+								Sign In <span>Now</span>
+							</h3>
+
+							<div class="styled-input agile-styled-input-top">
+								<input id="textinput" type="email" name="username" required="">
+								<label>Email</label> <span></span>
+							</div>
+							<div class="styled-input">
+								<input id="passwordinput" type="password" name="password"
+									required=""> <label>Password</label> <span></span>
+							</div>
+							<input type="submit" value="Sign In">
+
+							<ul
+								class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
+								<li><a href="#" class="facebook">
+										<div class="front">
+											<i class="fa fa-facebook" aria-hidden="true"></i>
+										</div>
+										<div class="back">
+											<i class="fa fa-facebook" aria-hidden="true"></i>
+										</div>
+								</a></li>
+								<li><a href="#" class="twitter">
+										<div class="front">
+											<i class="fa fa-twitter" aria-hidden="true"></i>
+										</div>
+										<div class="back">
+											<i class="fa fa-twitter" aria-hidden="true"></i>
+										</div>
+								</a></li>
+								<li><a href="#" class="instagram">
+										<div class="front">
+											<i class="fa fa-instagram" aria-hidden="true"></i>
+										</div>
+										<div class="back">
+											<i class="fa fa-instagram" aria-hidden="true"></i>
+										</div>
+								</a></li>
+								<li><a href="#" class="pinterest">
+										<div class="front">
+											<i class="fa fa-linkedin" aria-hidden="true"></i>
+										</div>
+										<div class="back">
+											<i class="fa fa-linkedin" aria-hidden="true"></i>
+										</div>
+								</a></li>
+							</ul>
+							<div class="clearfix"></div>
+							<p>
+								<a href="#" data-toggle="modal" data-target="#myModal2">
+									Don't have an account?</a>
+							</p>
+
+						</div>
+						<div class="col-md-4 modal_body_right modal_body_right1">
+							<img src="resources/images/log_pic.jpg" alt=" " />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!-- //Modal content-->
+			</div>
+		</div>
+	</form>
+	<!-- //Modal1 -->
+	<!-- Modal2 -->
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="col-md-8 modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">
+							Sign Up <span>Now</span>
+						</h3>
+						<form action="#" method="post">
+							<div class="styled-input agile-styled-input-top">
+								<input type="text" name="Name" required=""> <label>Name</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="email" name="Email" required=""> <label>Email</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="password" name="password" required=""> <label>Password</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="password" name="Confirm Password" required="">
+								<label>Confirm Password</label> <span></span>
+							</div>
+							<input type="submit" value="Sign Up">
+						</form>
+						<ul
+							class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
+							<li><a href="#" class="facebook">
+									<div class="front">
+										<i class="fa fa-facebook" aria-hidden="true"></i>
+									</div>
+									<div class="back">
+										<i class="fa fa-facebook" aria-hidden="true"></i>
+									</div>
+							</a></li>
+							<li><a href="#" class="twitter">
+									<div class="front">
+										<i class="fa fa-twitter" aria-hidden="true"></i>
+									</div>
+									<div class="back">
+										<i class="fa fa-twitter" aria-hidden="true"></i>
+									</div>
+							</a></li>
+							<li><a href="#" class="instagram">
+									<div class="front">
+										<i class="fa fa-instagram" aria-hidden="true"></i>
+									</div>
+									<div class="back">
+										<i class="fa fa-instagram" aria-hidden="true"></i>
+									</div>
+							</a></li>
+							<li><a href="#" class="pinterest">
+									<div class="front">
+										<i class="fa fa-linkedin" aria-hidden="true"></i>
+									</div>
+									<div class="back">
+										<i class="fa fa-linkedin" aria-hidden="true"></i>
+									</div>
+							</a></li>
+						</ul>
+						<div class="clearfix"></div>
+						<p>
+							<a href="#">By clicking register, I agree to your terms</a>
+						</p>
+
+					</div>
+					<div class="col-md-4 modal_body_right modal_body_right1">
+						<img src="images/log_pic.jpg" alt=" " />
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+	</div>
+	<!-- //Modal2 -->

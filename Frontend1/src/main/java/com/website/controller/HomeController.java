@@ -15,4 +15,14 @@ public class HomeController {
 	public String about() {
 		return "about";
 	}
+	
+	@RequestMapping("/mens")
+	public String mens() {
+		return "Mens";
+	}
+	
+	@RequestMapping("/womens")
+	public String womens() {
+		return "Womens";
+	}
 }
